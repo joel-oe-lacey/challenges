@@ -15,3 +15,59 @@
 
 //input a an int of # of single tables, b an int of # of double tables, t an array of customers coming in, sorted chronologically
 //output should be an int/counter of the number of customers that must be turned away 
+
+// <--- Finalization of our initial attempt --->
+function restaurant(a,b,t){
+//// vanilla
+  let rejections = 0;
+  let singles = [];
+  let doubles = [];
+  let occpDouble = [];
+
+  for (let i = 0; i < a; i++) {
+    singles.push(1);
+  }
+  for (let i = 0; i < b; i++) {
+    doubles.push(2);
+  }
+//// ES6 array building 
+//   let singles = [...new Array(a)];
+//   let doubles = [...new Array(b)];
+
+//// add int values in place of undefined 
+//   singles = singles.map(() => 1)
+//   doubles = doubles.map(() => 2)
+
+  t.forEach(customer => {
+    //if single customer
+    if(customer === 1) {
+      //check if there's an available singles table
+      if(singles.length) {
+        singles.pop();
+        //otherwise check if there's a doubles table
+      } else if (doubles.length) {
+        //if so remove a double and add an occupiedDouble
+        doubles.pop()
+        occpDouble.push(1)
+        //check for occupied doubles as final fallback
+      } else if(occpDouble.length) {
+        occpDouble.pop()
+      } else {
+        //if there are neither left, reject customer
+        rejections = rejections + customer;
+      }
+      //if double customer
+    } else if (customer === 2) {
+      //check for available double
+      if(doubles.length) {
+        doubles.pop()
+      } else {
+        //if none are left, reject 
+        rejections = rejections + customer;
+      }
+    }
+  })
+
+  return rejections;
+}
+
