@@ -16,4 +16,19 @@ const c = new LinkedListNode('C');
 a.next = b;
 b.next = c;
 
+//input: target node
+//output: none
+
+//list isn't linked internally want to start on first node
+//how would you know what the start node is save semantic naming? 
+
+const deleteNode = target => {
+    const node = a;
+    if (node.next.value = target) {
+        node.next = node.next.next;
+    } else {
+        node = node.next;
+    }
+}
+
 deleteNode(b);
