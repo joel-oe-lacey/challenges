@@ -13,13 +13,13 @@
     //if you split you can compare if word is in minorWords
     //asign minorWords to a SET for quick lookup
 
-function titleCase(title, minorWords) {
-    let exceptions = minorWords.toLowerCase().split(' ')
+function titleCase(title, minorWords = '') {
+    let exceptions = minorWords.toLowerCase().split(' ');
     exceptions = new Set(exceptions)
 
     let titleWords = title.toLowerCase().split(' ')
     return titleWords.map((word, index) => {
-        if (!exceptions.has(word) || !index) {
+        if (!exceptions.has(word) || !index && title) {
             const wordArr = word.split('');
             wordArr[0] = wordArr[0].toUpperCase();
             return wordArr.join('')
