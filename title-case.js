@@ -15,6 +15,13 @@ function titleCase(title, minorWords) {
 
     let exceptions = minorWords.toLowerCase().split(' ')
     exceptions = new Set(exceptions)
+
+    let titleWords = title.toLowerCase().split(' ')
+    return titleWords.map(word => {
+        const wordArr = word.split('');
+        wordArr[0] = wordArr[0].toUpperCase();
+        return wordArr.join('')
+    }).join(' ')
 }
 
 
