@@ -13,4 +13,8 @@ function titleCase(title, minorWords) {
     //if you split you can compare if word is in minorWords
     //asign minorWords to a SET for quick lookup
 
+    let exceptions = minorWords.toLowerCase().split(' ')
+    exceptions = new Set(exceptions)
 }
+
+
