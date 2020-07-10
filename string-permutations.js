@@ -1,3 +1,12 @@
+//Pseudocode
+//our focus here is on the recursive call
+//a set inherently will eliminate duplication
+//could splice and push to the end the first character and then check if that's in the set?
+//if not add, then call again
+//what's our base case? 
+//pointer at the first character? 
+//check if string === how the string first appeared
+
 function getPermutations(string) {
 
     // Generate all permutations of the input string
