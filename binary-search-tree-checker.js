@@ -25,9 +25,16 @@ class BinaryTreeNode {
 }
 
 function isBinarySearchTree(treeRoot) {
+    let stack = [treeRoot];
+    let res = [];
 
+    while (stack.length) {
+        let curr = queue.pop();
+        let upperBound = undefined; 
+        let lowerBound = undefined;
+    }
     // Determine if the tree is a valid binary search tree
 
 
-    return false;
+    return true;
 }
