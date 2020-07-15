@@ -34,3 +34,26 @@ class Stack {
         return this.items[this.items.length - 1];
     }
 }
+
+
+//Pseudocode
+// We'll want to extend the stack class. 
+// we could do something similar to the peek check but reduce over the array and track max value found
+
+class MaxStack extends Stack {
+    constructor() {
+        super();
+    }
+
+    getMax() {
+        if (!this.items.length) {
+            return null;
+        }
+        return this.items.reduce((max, item) => {
+            if(item > max) {
+                max = item;
+            }
+            return max;
+        }, 0)
+    }
+}
