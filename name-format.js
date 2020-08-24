@@ -39,3 +39,29 @@
 //if it's an empty array, return empty string
 //if it's a single name, just return the name
 
+//SOLUTION
+const list = names => {
+    return names.reduce((finalString, nameRecord, i, allNames) => {
+        const {
+            name
+        } = nameRecord;
+
+        if (i > 0 && i === allNames.length - 1) {
+            finalString += ` & ${name}`;
+        } else if (i > 0) {
+            finalString += `, ${name}`;
+        } else {
+            finalString = name;
+        }
+
+        return finalString;
+    }, '')
+}
+
+// list([{name: 'Bart'},{name: 'Lisa'},{name: 'Maggie'},{name: 'Homer'},{name: 'Marge'}])
+
+// list([{name: 'Bart'},{name: 'Lisa'}])
+
+// list([{name: 'Bart'}])
+
+// list([])
