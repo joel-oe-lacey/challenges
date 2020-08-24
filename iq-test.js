@@ -26,3 +26,12 @@
 //alternative approach that doesn't involve space complexity increase?
 //peek first three numbers, determine prevalent type, set that divisor 
 //use that in function to return index of first number found that matches 
+
+//SOLUTION
+const iqTest = numbers => {
+    const numList = numbers.split(' ');
+    const [a, b, c] = numList;
+    const selector = (((a % 2) + (b % 2) + (c % 2)) < 2) ? 1 : 0;
+
+    return numList.findIndex(number => number % 2 === selector) + 1;
+}
