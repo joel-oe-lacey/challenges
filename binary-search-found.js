@@ -15,5 +15,21 @@ const preorderSearch = node => {
     preorderSearch(node.right);
 }
 
+const inorderSearch = node => {
+    // Check that a node exists.
+    if (node === null) {
+        return;
+    }
+
+    // Start with left child node and continue down that path as far as you can
+    inorderSearch(node.left);
+
+    // Print the data of the node.
+    console.log(node.data);
+
+    // Then, pass reference to the right child node to inorderSearch.
+    inorderSearch(node.right);
+}
+
 
 //BFS
