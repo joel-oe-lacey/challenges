@@ -15,20 +15,37 @@ const preorderSearch = node => {
     preorderSearch(node.right);
 }
 
-const inorderSearch = node => {
+const inOrderSearch = node => {
     // Check that a node exists.
     if (node === null) {
         return;
     }
 
     // Start with left child node and continue down that path as far as you can
-    inorderSearch(node.left);
+    inOrderSearch(node.left);
 
     // Print the data of the node.
     console.log(node.data);
 
     // Then, pass reference to the right child node to inorderSearch.
-    inorderSearch(node.right);
+    inOrderSearch(node.right);
+}
+
+const postOrderSearch = node => {
+    // Check that a node exists.
+    if (node === null) {
+        return;
+    }
+
+    // Start with left child node and continue down that path as far as you can
+    postOrderSearch(node.left);
+
+    // Then, check the right child node
+    postOrderSearch(node.right);
+
+    // Print the data of the node.
+    console.log(node.data);
+
 }
 
 
