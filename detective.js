@@ -13,6 +13,12 @@
 // ['Lucas', 'Bill']
 // return the name of the one killer, in our case 'James' because he is the only person that saw both 'Lucas' and 'Bill'
 
-const killer = (suspectInfo, dead) => {
-  
+//PSEUDOCODE 
+//forEach over the victims
+//could do an includes?    
+//time complexity here is a bit high 
+//start as brute force 
+
+const detective = (suspectInfo, dead) => {
+    
 }
