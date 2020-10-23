@@ -14,11 +14,43 @@
 // return the name of the one killer, in our case 'James' because he is the only person that saw both 'Lucas' and 'Bill'
 
 //PSEUDOCODE 
-//forEach over the victims
-//could do an includes?    
+//forEach over the names
+//then do object.keys over victims 
+//can then hit an includes to check for presence.
+//all have to be true
+//short on first match
+//unclear from problem description if there can be multiple "killers"
 //time complexity here is a bit high 
-//start as brute force 
+
+const suspects = {'James': ['Jacob', 'Bill', 'Lucas'],
+ 'Johnny': ['David', 'Kyle', 'Lucas'],
+ 'Peter': ['Lucy', 'Kyle']}
+const suspects2 = {'Brad': [], 'Megan': ['Ben', 'Kevin'], 'Finn': []}
+const victims = ['Lucas', 'Bill'];
+const victims2 = ['Ben'];
 
 const detective = (suspectInfo, dead) => {
-    
+    let killer = '';
+
+    const checkGuilt = (suspect) => {
+        return dead.reduce((isGuilty, victim) => {
+            if(!suspectInfo[suspect].includes(victim)) {
+                isGuilty = false;
+            }
+
+            return isGuilty;
+        }, true)
+    }
+
+    while (!killer) {
+        Object.keys(suspectInfo).forEach(suspect => {
+            if(checkGuilt(suspect)) {
+                killer = suspect;
+            }
+        })
+    }
+
+    return killer;
 }
+
+detective(suspects1, victims1)
