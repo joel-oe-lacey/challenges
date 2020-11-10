@@ -20,7 +20,7 @@
     //i start at 2
 
 const multiplicationTable = (row, col) => {
-    const timesTable = [new Array(col)];
+    const timesTable = [Array.from({length: col}, (_, i) => i + 1)];
 
     for (let i = 2; i <= row; i++) {
         timesTable.push(timesTable[0].map(num => num * i)) 
