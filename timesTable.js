@@ -12,3 +12,9 @@
 
 // Each value on the table should be equal to the value of multiplying the number in its first row times the number in its first column.
 
+//PSEUDOCODE
+//first row in matrix is always an index capped at first param
+//we then want to iterate through row/array
+//for as long as i < second param
+    //create an array with a clone of the first * i 
+    //i start at 2
