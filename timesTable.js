@@ -18,3 +18,15 @@
 //for as long as i < second param
     //create an array with a clone of the first * i 
     //i start at 2
+
+const multiplicationTable = (row, col) => {
+    const timesTable = [new Array(col)];
+
+    for (let i = 2; i <= row; i++) {
+        timesTable.push(timesTable[0].map(num => num * i)) 
+    }
+
+    return timesTable;
+}
+
+console.log(multiplicationTable(3,3))
