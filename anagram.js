@@ -16,6 +16,22 @@
 
 // anagrams('laser', ['lazing', 'lazy',  'lacer']) => []
 
+//PSEUDOCODE
+//we want to track success case for anagram 
+//a hash tracker would be a performant way to do this
+//take initial word, use hash tracker function for letter appearance
+//then compare other words against base frequency map
+    //will need to do object comparison here
+    //this is tricky and rarely performant
+    //could do a keys and value comp, or a stringified comp
+
+    //instead of utilizing one tracker function, run an initial storage on first word
+    //then do a live comparison on words arr
+        //remove key if count hits 0 in tracker as you iterate over letters
+//if word passes check, add to result array
+
+
+
 const anagrams = (word, words) => {
-    
+
 }
