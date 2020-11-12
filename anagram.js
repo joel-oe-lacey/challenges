@@ -48,21 +48,24 @@ const anagrams = (word, words) => {
     }
 
     const checkAnagramMatch = (wordToCheck, freqMap, answerStore) => {
+        let unmatchedChar = false;
         const baseWordCount = {
             ...freqMap
         }
         
         for (let i = 0; i < wordToCheck.length; i++) {
             if (baseWordCount[wordToCheck[i]]) {
-                baseWordCount[wordToCheck[i]] -= 1
-            } 
+                baseWordCount[wordToCheck[i]] -= 1;
+            } else {
+                unmatchedChar = true;
+            }
             
             if (baseWordCount[wordToCheck[i]] === 0) {
-                delete baseWordCount[wordToCheck[i]]
+                delete baseWordCount[wordToCheck[i]];
             }
         }
         
-        if (!Object.keys(baseWordCount).length) {
+        if (!Object.keys(baseWordCount).length && !unmatchedChar) {
             answerStore.push(wordToCheck)
         }
     }
@@ -76,3 +79,5 @@ const anagrams = (word, words) => {
 
     return matchingAnagrams;
 }
+
+console.log(anagrams('racer', ['crazer', 'carer', 'racar', 'caers', 'racer']))
