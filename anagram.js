@@ -33,5 +33,46 @@
 
 
 const anagrams = (word, words) => {
+    const initLetterMap = (initWord) => {
+        const letterMap = {}
+        
+        for (let i = 0; i < initWord.length; i++) {
+            if (!letterMap[initWord[i]]) {
+                letterMap[initWord[i]] = 1
+            } else {
+                letterMap[initWord[i]] += 1
+            }
+        }
 
+        return letterMap;
+    }
+
+    const checkAnagramMatch = (wordToCheck, freqMap, answerStore) => {
+        const baseWordCount = {
+            ...freqMap
+        }
+        
+        for (let i = 0; i < wordToCheck.length; i++) {
+            if (baseWordCount[wordToCheck[i]]) {
+                baseWordCount[wordToCheck[i]] -= 1
+            } 
+            
+            if (baseWordCount[wordToCheck[i]] === 0) {
+                delete baseWordCount[wordToCheck[i]]
+            }
+        }
+        
+        if (!Object.keys(baseWordCount).length) {
+            answerStore.push(wordToCheck)
+        }
+    }
+    
+    const wordFreq = initLetterMap(word);
+    const matchingAnagrams = [];
+
+    words.forEach(word => {
+        checkAnagramMatch(word, wordFreq, matchingAnagrams)
+    })
+
+    return matchingAnagrams;
 }
