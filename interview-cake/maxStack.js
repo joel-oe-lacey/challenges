@@ -50,7 +50,7 @@ class MaxStack {
     
     push(newNum) {
         this.stack.push(newNum);
-        if (newNum >= this.maxesStack.peek()) {
+        if (this.maxesStack.peek() === null || newNum >= this.maxesStack.peek()) {
             this.maxesStack.push(newNum);
         }
     }
