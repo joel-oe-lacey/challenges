@@ -19,32 +19,46 @@
 // keep pulling from one array as value is < than the other
 // when it isn't swap
 // just need a tracker of current element with each
-
-// need to check arr are same length
-// should this matter? 
 // want to iterate for combined length
 
+// edge case, arr of different size
+// could stop loop and just concat remaining arr
+// we want to run for combined length up to tail, we can't know where 
+
 const mergeSortedArr = (arr1, arr2) => {
-    const combLen = arr1.length + arr2.length;
-    const result = [];
+    const combinedLength = arr1.length + arr2.length;
+    const combLengthNoTail = arr1.length >= arr2.length ? (combinedLength - (arr1.length - arr2.length)) : (combinedLength - (arr2.length - arr1.length));
+    let result = [];
 
     let arr1Pointer = 0,
         arr2Pointer = 0;
-
-    for (let i = 0; i < combLen; i++) {
+        
+    for (let i = 0; i < combLengthNoTail; i++) {
         if (arr1[arr1Pointer] <= arr2[arr2Pointer]) {
             result.push(arr1[arr1Pointer])
-            arr1Pointer++
+            if (arr1Pointer < arr1.length - 1) {
+                arr1Pointer++
+            }
         } else {
             result.push(arr2[arr2Pointer])
-            arr2Pointer++
+            if (arr2Pointer < arr2.length - 1) {
+                arr2Pointer++
+            }
         }
+    }
+
+    if (arr1.length > arr2.length) {
+        const arr1Tail = arr1.splice(arr1Pointer, arr1.length - 1)
+        result = result.concat(arr1Tail)
+    } else if (arr2.length > arr1.length) {
+        const arr2Tail = arr2.splice(arr2Pointer, arr2.length - 1)
+        result = result.concat(arr2Tail)
     }
 
     return result;
 }
 
   const testArr1 = [3, 4, 6, 10, 11, 15];
-  const testArr2 = [1, 5, 8, 12, 14, 19];
+  const testArr2 = [1, 5, 8, 12, 14, 19, 20, 22, 25];
 
 console.log(mergeSortedArr(testArr1, testArr2))
