@@ -23,3 +23,28 @@
 // need to check arr are same length
 // should this matter? 
 // want to iterate for combined length
+
+const mergeSortedArr = (arr1, arr2) => {
+    const combLen = arr1.length + arr2.length;
+    const result = [];
+
+    let arr1Pointer = 0,
+        arr2Pointer = 0;
+
+    for (let i = 0; i < combLen; i++) {
+        if (arr1[arr1Pointer] <= arr2[arr2Pointer]) {
+            result.push(arr1[arr1Pointer])
+            arr1Pointer++
+        } else {
+            result.push(arr2[arr2Pointer])
+            arr2Pointer++
+        }
+    }
+
+    return result;
+}
+
+  const testArr1 = [3, 4, 6, 10, 11, 15];
+  const testArr2 = [1, 5, 8, 12, 14, 19];
+
+console.log(mergeSortedArr(testArr1, testArr2))
