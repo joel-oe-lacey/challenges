@@ -34,15 +34,21 @@
 // also on the push a new temporary array is created
 // start here
 
-const testArr = [5,1,2,3,4]
+// for arr.length 
+// start at 1
+// arr[i - 1] = a[i]
+// if last el (arr.length - 1) assign to tempFirst
+// this GREATLY increases time complexity (Nn)
 
-function rotLeft(a, d) {
-    for (let i = 0; i === d; i++) {
+const testArr = [5,1,2,3,4];
+
+function rotLeft(a, d) {        
+    for (let i = 0; i < d; i++) {
         const tempFirst = a.shift();
-        a.push(tempFirst);
+        a.push(tempFirst); 
     }
 
     return a;
-}
+};
 
 console.log(rotLeft(testArr, 4))
