@@ -62,3 +62,51 @@
 // at end of l
 // run over s
     // add values to deletion count 
+
+// don't actually care about length, just do first word first, same process 
+const testWord1 = 'cde',
+    testWord2 = 'abc';
+
+
+function makeAnagram(a, b) {
+    const makeHashTracker = str => {
+        const tracker = {}
+
+        for (let i = 0; i < str.length; i++) {
+            if (tracker[str[i]]) {
+                tracker[str[i]]++
+            } else {
+                tracker[str[i]] = 1;
+            }
+        }
+
+        return tracker;
+    }
+
+    const aTracker = makeHashTracker(a),
+        bTracker = makeHashTracker(b);
+    let deletionCount = 0;
+    
+    Object.keys(aTracker).forEach(char => {
+        if (!bTracker[char]) {
+            deletionCount += aTracker[char];
+        } else if (bTracker[char] > aTracker[char]) {
+            deletionCount += bTracker[char] - aTracker[char];
+            delete bTracker[char];
+        } else if (bTracker[char] < aTracker[char]) {
+            deletionCount += aTracker[char] - bTracker[char];
+            delete bTracker[char];
+        } else {
+            delete bTracker[char];
+        }
+    })
+    
+    deletionCount += Object.keys(bTracker).reduce((remainingChars, char) => {
+        remainingChars += bTracker[char];
+        return remainingChars;
+    }, 0);
+
+    return deletionCount;
+}
+
+console.log(makeAnagram(testWord1, testWord2))
