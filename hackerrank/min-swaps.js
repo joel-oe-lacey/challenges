@@ -78,23 +78,32 @@
 // start sorting the arr by swaps
 // if at the right index leave
 // if at the wrong index, sort and increase sort count
-// how to sort without going through whole array to find element? 
 // if we don't want to can just do indexOf
     // this whoever greatly increases time complexity 
 // start with this
 // could use recursion and make it a repeated subtask 
-// 
+// hold the value in memory as we go?
+
+// if we're going to use the tracker, need to keep track of changes as we go
+// solution is 2n
 
 const testCase = [2,3,4,1,5]
 
 function minimumSwaps(arr) {
     let swapCount = 0;
 
+    const arrIndexMap = arr.reduce((indexMap, num, index) => {
+        indexMap[num] = index;
+        return indexMap;
+    }, {})
+
     for (let i = 0; i < arr.length; i++) {
        if (arr[i] !== i + 1) {
-            const swapPoint = arr.indexOf(i + 1);
+            const swapPoint = arrIndexMap[i + 1];
             arr[swapPoint] = arr[i];
+            arrIndexMap[arr[i]] = swapPoint;
             arr[i] = i + 1;
+            arrIndexMap[i + 1] = i + 1;
             swapCount++;
         }
     }
