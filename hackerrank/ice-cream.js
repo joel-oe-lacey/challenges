@@ -40,3 +40,22 @@
 // this could potentially be expanded to greater bounds if grouped permutations of possible answers are kept, though that grows exponentially.
 // for the two pair though, if the next number stepped over is in tracker, return index and curr index in that order.
 // if not "not possible"
+
+const testCost = [ 1, 4, 5, 3, 2 ];
+const testMoney = 4;
+const testCost2 = [ 2, 2, 4, 3 ]
+const testMoney2 = 4;
+
+function whatFlavors(cost, money) {
+    const diffTracker = {};
+
+    for (let i = 0; i < cost.length; i++) {
+        if (diffTracker[cost[i]]) {
+            console.log(`${diffTracker[cost[i]]} ${i + 1}`)
+        } else {
+            diffTracker[money - cost[i]] = i + 1;
+        }
+    }
+}
+
+console.log(whatFlavors(testCost2, testMoney2))
