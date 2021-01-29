@@ -35,20 +35,41 @@
 // each step pointer++
 // if we hit end of str (pointer > str.length) set pointer to 0
 
+// this needs to be optimized
+// if we are iterating over things for n and n is massive it will take a long time
+// we can do near constant time evaluation
+// do a pass over str to assign how many times a appears
+// take n / s.length, floored
+// use that value to multiply to find appearances
+// take n % s.length to find remainder
+// do a single final pass over str for that remainder 
+
+const testS = 'aab';
+const testN = 882787;
+
+//expected 588525
+
 function repeatedString(s, n) {
-    let sIndex = 0,
-        aCounter = 0;
+    let aCounter = 0;
 
-    for (let i = 0; i < n + 1; i++) {
-        if(s[sIndex] === "a") {
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === "a") {
             aCounter++;
-        }
-
-        sIndex++;
-        if(sIndex > s.length - 1) {
-            sIndex = 0;
         }
     }
 
-    return aCounter;
+    let aFreqCalc = Math.floor(n/s.length) * aCounter;
+    const aFreqRemainder = n % s.length;
+
+    if (aFreqRemainder) {
+        for (let i = 0; i < aFreqRemainder; i++) {
+            if (s[i] === "a") {
+                aFreqCalc++;
+            }
+        }
+    }
+    
+    return aFreqCalc;
 }
+
+console.log(repeatedString(testS,testN))
