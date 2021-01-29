@@ -1,3 +1,4 @@
+'use strict';
 // Harold is a kidnapper who wrote a ransom note, but now he is worried it will be traced back to him through his handwriting. He found a magazine and wants to know if he can cut out whole words from it and use them to create an untraceable replica of his ransom note. The words in his note are case-sensitive and he must use only whole words available in the magazine. He cannot use substrings or concatenation to create the words he needs.
 
 // Given the words in the magazine and the words in the ransom note, print Yes if he can replicate his ransom note exactly using whole words from the magazine; otherwise, print No.
@@ -35,8 +36,37 @@
 // after each word if freq > 1, minus its counter, otherwise delete the key 
 // return Yes otherwise at end of function 
 
+const testMag = ['give','me','one','grand','today','night'];
+const testMag2 = ['ive', 'got', 'a', 'lovely', 'bunch', 'of', 'coconuts']
+const testNote = ['give','one','grand','today']
+const testNote2 = ['ive', 'got', 'some', 'coconuts']
+
 
 function checkMagazine(magazine, note) {
+    const magazineTracker = magazine.reduce((tracker, word) => {
+        if (tracker[word]) {
+            tracker[word]++;
+        } else {
+            tracker[word] = 1;
+        }
 
+        return tracker;
+    }, {})
 
-}
+    for (let i = 0; i < note.length; i++) {
+        if (!magazineTracker[note[i]]) {
+            console.log('No');
+            break;
+        } else if (magazineTracker[note[i]] > 1) {
+            magazineTracker[note[i]]--;
+        } else {
+            delete magazineTracker[note[i]];
+        }
+
+        if (i === note.length - 1) {
+            console.log('Yes');
+        }
+    }
+}  
+
+checkMagazine(testMag2, testNote2)
