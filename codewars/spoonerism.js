@@ -9,3 +9,17 @@
 // NOTE: All input strings will contain only two words. Spoonerisms can be more complex. For example, three-word phrases in which the first letters of the first and last words are swapped: "pack of lies" --> "lack of pies" or more than one letter from a word is swapped: "flat battery --> "bat flattery" You are NOT expected to account for these, or any other nuances involved in spoonerisms.
 
 // Once you have completed this kata, a slightly more challenging take on the idea can be found here: http://www.codewars.com/kata/56dbed3a13c2f61ae3000bcd
+
+// Pseudocode
+// want to split the words to arr
+// string immutable in js
+// substring of end of each word
+// take first letter of each join on opposing substring
+
+function spoonerize(words) {
+  const wordSeparated = words.split(' '),
+  wordOneEnding = wordSeparated[0].substring(1),
+  wordTwoEnding = wordSeparated[1].substring(1);
+
+  return `${wordSeparated[1][0]}${wordOneEnding} ${wordSeparated[0][0]}${wordTwoEnding}`;
+}
